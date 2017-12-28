@@ -1,14 +1,23 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, redirect, request
 import json
 import requests
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/index',methods = ['POST', 'GET'])
 def index():
     return render_template('index.html')
 
-@app.route('/daily/<symbol>')
+@app.route('/check',methods = ['POST', 'GET'])
+def check():
+    if request.method == 'POST':
+        stock = request.form['stock']
+        return redirect(url_for('daily', symbol = stock))
+    else:
+        stock = request.args.get('stock')
+        return redirect(url_for('daily', symbol = stock))
+
+@app.route('/daily/<symbol>', methods = ['POST', 'GET'])
 def daily(symbol):
     function = 'TIME_SERIES_DAILY'
     json_dict = getResponse(symbol, function)
@@ -17,7 +26,7 @@ def daily(symbol):
     date = getOpenDate(symbol, json_dict)
     return render_template('daily.html', openData=openData, closeData=closeData, symbol=symbol, date=date)
 
-@app.route('/intraday/<symbol>')
+@app.route('/intraday/<symbol>', methods = ['POST', 'GET'])
 def intraday(symbol):
     function = 'TIME_SERIES_INTRADAY'
     json_dict = getResponse(symbol, function)
