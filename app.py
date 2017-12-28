@@ -3,6 +3,11 @@ import json
 import requests
 
 app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
 @app.route('/daily/<symbol>')
 def daily(symbol):
     function = 'TIME_SERIES_DAILY'
@@ -10,7 +15,7 @@ def daily(symbol):
     openData = getOpen(symbol,json_dict)
     closeData = getClose(symbol, json_dict)
     date = getOpenDate(symbol, json_dict)
-    return render_template('index.html', openData=openData, closeData=closeData, symbol=symbol, date=date)
+    return render_template('daily.html', openData=openData, closeData=closeData, symbol=symbol, date=date)
 
 @app.route('/intraday/<symbol>')
 def intraday(symbol):

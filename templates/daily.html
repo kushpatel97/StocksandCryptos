@@ -12,14 +12,13 @@
 {% extends "index.html" %}
 {% block content %}
 <div class="container">
-    <h2>Currently viewing prices of {{symbol}} stock at 5 minute intervals</h2>
+    <h2>Currently viewing prices of {{symbol}} stock at daily intervals</h2>
     <br>
 </div>
 
 <div class="container">
     <canvas id="myChart" width="1500" height="750"></canvas>
 </div>
-
 <script>
     var ctx = document.getElementById("myChart").getContext('2d');
        var myChart = new Chart(ctx, {
