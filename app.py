@@ -24,7 +24,11 @@ def daily(symbol):
     openData = getOpen(symbol,json_dict)
     closeData = getClose(symbol, json_dict)
     date = getOpenDate(symbol, json_dict)
-    return render_template('daily.html', openData=openData, closeData=closeData, symbol=symbol, date=date)
+    maxOpen = getMax(openData)
+    minOpen = getMin(openData)
+    maxClose = getMax(closeData)
+    minClose = getMin(closeData)
+    return render_template('daily.html', openData=openData, closeData=closeData, symbol=symbol, date=date, maxOpen=maxOpen, minOpen=minOpen, maxClose=maxClose, minClose=minClose)
 
 @app.route('/intraday/<symbol>', methods = ['POST', 'GET'])
 def intraday(symbol):
@@ -34,9 +38,11 @@ def intraday(symbol):
     openData = getOpen(symbol,json_dict)
     closeData = getClose(symbol, json_dict)
     date = getOpenDate(symbol, json_dict)
-    return render_template('intraday.html', openData=openData, closeData=closeData, symbol=symbol, date=date)
-
-
+    maxOpen = getMax(openData)
+    minOpen = getMin(openData)
+    maxClose = getMax(closeData)
+    minClose = getMin(closeData)
+    return render_template('intraday.html', openData=openData, closeData=closeData, symbol=symbol, date=date, maxOpen=maxOpen, minOpen=minOpen, maxClose=maxClose, minClose=minClose)
 
 def getResponse(symbol, function):
     API_KEY = 'O2877FVGMXZ33X94'
@@ -55,8 +61,6 @@ def getResponse(symbol, function):
             'symbol': symbol,
             'apikey': API_KEY
         }
-
-
     json_data = requests.get(API_URL, params=parameters)
     json_dict = json.loads(json_data.content)
     return json_dict
@@ -85,6 +89,12 @@ def getOpenDate(symbol,json_dict):
     for key in json_dict[timeseries]:
         date.append(key)
     return date
+
+def getMax(numlist):
+    return max(numlist)
+
+def getMin(numlist):
+    return min(numlist)
 
 if __name__ == '__main__':
     app.run(debug=True)

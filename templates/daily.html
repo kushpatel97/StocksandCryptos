@@ -11,10 +11,27 @@
 <body>
 {% extends "index.html" %}
 {% block content %}
-<div class="container">
-    <h2>Currently viewing prices of {{symbol}} stock at daily intervals</h2>
-    <br>
+<div class="row">
+    <div class="col-md-8">
+        <!--<div class="container">-->
+        <h2>Currently viewing prices of {{symbol}} stock at daily intervals</h2>
+        <!--</div>-->
+    </div>
+    <div class="col-md-4">
+        <dl class="dl-horizontal">
+          <dt>Daily Open High</dt>
+          <dd>${{ maxOpen }}</dd>
+          <dt>Daily Open Low</dt>
+          <dd>${{ minOpen }}</dd>
+          <dt>Daily Close High</dt>
+          <dd>${{ maxClose }}</dd>
+          <dt>Daily Close Low</dt>
+          <dd>${{ minClose }}</dd>
+        </dl>
+    </div>
 </div>
+
+<br>
 
 <div class="container">
     <canvas id="myChart" width="1500" height="750"></canvas>
