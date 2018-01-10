@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Stocks</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
@@ -12,21 +12,30 @@
 {% block content %}
 
 <h1>Stock test</h1>
+<!-- Forms -->
 <div class="container">
-    <form class="navbar-form navbar-left" action="http://localhost:5000/check" method="post">
-        <div class="form-group">
-            <input type="text" class="form-control" name="stock" placeholder="Enter Stock Symbol"/>
-              <!--<input type="submit" value="submit"/>-->
-          </div>
-          <button type="submit" value="submit" class="btn btn-primary">Submit</button>
-    </form>
+    <div class="row">
+        <div class="col-lg-12">
+            <form class="navbar-form navbar-left" action="http://localhost:5000/check" method="post">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="stock" placeholder="Enter Stock Symbol"/>
+                    <!--<input type="submit" value="submit"/>-->
+                </div>
+                <button type="submit" value="submit" class="btn btn-primary btn-md">Submit</button>
+            </form>
+        </div>
+    </div>
 </div>
 <br>
+<!-- Links -->
 <div class="container">
     <div class="row">
         <div class="col-lg-3">
+            <a href="{{ url_for('intraday', symbol=symbol) }}" class="btn btn-default btn-lg center-block">Intraday</a>
+            <br>
             <a href="{{ url_for('daily', symbol=symbol) }}" class="btn btn-primary btn-lg center-block">Daily</a>
-            <a href="{{ url_for('intraday', symbol=symbol) }}" class="btn btn-secondary btn-lg center-block">Intraday</a>
+            <br>
+            <a href="{{ url_for('monthly', symbol=symbol) }}" class="btn btn-default btn-lg center-block">Monthly</a>
         </div>
         <div class="col-lg-9">
             <canvas id="myChart" width="1500" height="750"></canvas>

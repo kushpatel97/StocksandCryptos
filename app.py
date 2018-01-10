@@ -1,6 +1,7 @@
 from flask import Flask, render_template, url_for, redirect, request
 import json
 import requests
+import stock
 
 app = Flask(__name__)
 
@@ -25,20 +26,6 @@ def stocks():
 def cryptos():
     return render_template('cryptos.html')
 
-@app.route('/stocks/daily/<symbol>', methods = ['POST', 'GET'])
-def daily(symbol):
-    function = 'TIME_SERIES_DAILY'
-    json_dict = getResponse(symbol, function)
-    openData = getOpen(symbol,json_dict)[::-1]
-    closeData = getClose(symbol, json_dict)[::-1]
-    date = getOpenDate(symbol, json_dict)[::-1]
-    # maxOpen = getMax(openData)
-    # minOpen = getMin(openData)
-    # maxClose = getMax(closeData)
-    # minClose = getMin(closeData)
-    # maxOpen = maxOpen, minOpen = minOpen, maxClose = maxClose, minClose = minClose
-    return render_template('daily.html', openData=openData, closeData=closeData, symbol=symbol, date=date)
-
 @app.route('/stocks/intraday/<symbol>', methods = ['POST', 'GET'])
 def intraday(symbol):
     function = 'TIME_SERIES_INTRADAY'
@@ -54,23 +41,48 @@ def intraday(symbol):
     # maxOpen=maxOpen, minOpen=minOpen, maxClose=maxClose, minClose=minClose
     return render_template('intraday.html', openData=openData, closeData=closeData, symbol=symbol, date=date)
 
+@app.route('/stocks/daily/<symbol>', methods = ['POST', 'GET'])
+def daily(symbol):
+    function = 'TIME_SERIES_DAILY'
+    json_dict = getResponse(symbol, function)
+    openData = getOpen(symbol,json_dict)[::-1]
+    closeData = getClose(symbol, json_dict)[::-1]
+    date = getOpenDate(symbol, json_dict)[::-1]
+    # maxOpen = getMax(openData)
+    # minOpen = getMin(openData)
+    # maxClose = getMax(closeData)
+    # minClose = getMin(closeData)
+    # maxOpen = maxOpen, minOpen = minOpen, maxClose = maxClose, minClose = minClose
+    return render_template('daily.html', openData=openData, closeData=closeData, symbol=symbol, date=date)
+
+@app.route('/stocks/monthly/<symbol>', methods = ['POST', 'GET'])
+def monthly(symbol):
+    function = 'TIME_SERIES_MONTHLY'
+    json_dict = getResponse(symbol, function)
+
+    openData = getOpen(symbol,json_dict)[::-1]
+    closeData = getClose(symbol, json_dict)[::-1]
+    date = getOpenDate(symbol, json_dict)[::-1]
+    # maxOpen = getMax(openData)
+    # minOpen = getMin(openData)
+    # maxClose = getMax(closeData)
+    # minClose = getMin(closeData)
+    # maxOpen=maxOpen, minOpen=minOpen, maxClose=maxClose, minClose=minClose
+    return render_template('monthly.html', openData=openData, closeData=closeData, symbol=symbol, date=date)
+
+
 def getResponse(symbol, function):
     API_KEY = 'O2877FVGMXZ33X94'
     API_URL = 'https://www.alphavantage.co/query'
+    parameters = {
+        'function': function,
+        'symbol': symbol,
+        'apikey': API_KEY
+    }
     if function == 'TIME_SERIES_INTRADAY':
-        parameters = {
-            'function': function,
-            'symbol': symbol,
-            'interval': '5min',
-            'outputsize': 'compact',
-            'apikey': API_KEY
-        }
-    else:
-        parameters = {
-            'function': function,
-            'symbol': symbol,
-            'apikey': API_KEY
-        }
+        parameters.update({'interval': '5min'})
+        parameters.update({'outputsize': 'compact'})
+
     json_data = requests.get(API_URL, params=parameters)
     json_dict = json.loads(json_data.content)
     return json_dict

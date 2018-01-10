@@ -2,23 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{symbol}} Intradaily</title>
+    <title>{{symbol}} Monthly</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
-
 <body>
 {% extends "navbar.html" %}
 {% block content %}
-<div class="row">
-    <div class="col-md-12">
-        <!--<div class="container">-->
-        <h2>Currently viewing prices of {{symbol}} stock at 5 minute intervals</h2>
-        <!--</div>-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 center-block">
+            <!--<div class="container">-->
+            <h2>Currently viewing prices of {{symbol}} stock at daily intervals</h2>
+            <!--</div>-->
+        </div>
     </div>
 </div>
-
 <br>
 <!-- Form -->
 <div class="container">
@@ -34,17 +35,16 @@
         </div>
     </div>
 </div>
-</div>
 <br>
 <!-- Links -->
 <div class="container">
     <div class="row">
         <div class="col-lg-3">
-            <a href="{{ url_for('intraday', symbol=symbol) }}" class="btn btn-default btn-lg active center-block">Intraday</a>
+            <a href="{{ url_for('intraday', symbol=symbol) }}" class="btn btn-default btn-lg center-block">Intraday</a>
             <br>
             <a href="{{ url_for('daily', symbol=symbol) }}" class="btn btn-primary btn-lg center-block">Daily</a>
             <br>
-            <a href="{{ url_for('monthly', symbol=symbol) }}" class="btn btn-default btn-lg center-block">Monthly</a>
+            <a href="{{ url_for('monthly', symbol=symbol) }}" class="btn btn-default btn-lg active center-block">Monthly</a>
         </div>
         <div class="col-lg-9">
             <canvas id="myChart" width="1500" height="750"></canvas>
