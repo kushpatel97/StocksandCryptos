@@ -9,32 +9,43 @@
 </head>
 
 <body>
-{% extends "index.html" %}
+{% extends "navbar.html" %}
 {% block content %}
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
         <!--<div class="container">-->
         <h2>Currently viewing prices of {{symbol}} stock at 5 minute intervals</h2>
         <!--</div>-->
     </div>
-    <div class="col-md-4">
-        <dl class="dl-horizontal">
-          <dt>Intraday Open High</dt>
-          <dd>${{ maxOpen }}</dd>
-          <dt>Intraday Open Low</dt>
-          <dd>${{ minOpen }}</dd>
-          <dt>Intraday Close High</dt>
-          <dd>${{ maxClose }}</dd>
-          <dt>Intraday Close Low</dt>
-          <dd>${{ minClose }}</dd>
-        </dl>
-    </div>
 </div>
 
 <br>
-
 <div class="container">
-    <canvas id="myChart" width="1500" height="750"></canvas>
+    <div class="row">
+        <div class="col-lg-12">
+            <form class="navbar-form navbar-left" action="http://localhost:5000/check" method="post">
+        <div class="form-group">
+            <input type="text" class="form-control" name="stock" placeholder="Enter Stock Symbol"/>
+              <!--<input type="submit" value="submit"/>-->
+          </div>
+          <button type="submit" value="submit" class="btn btn-primary">Submit</button>
+    </form>
+        </div>
+    </div>
+</div>
+</div>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3">
+            <a href="{{ url_for('daily', symbol=symbol) }}" class="btn btn-primary btn-lg center-block">Daily</a>
+            <a href="{{ url_for('intraday', symbol=symbol) }}" class="btn btn-secondary btn-lg center-block">Intraday</a>
+        </div>
+        <div class="col-lg-9">
+            <canvas id="myChart" width="1500" height="750"></canvas>
+        </div>
+    </div>
+
 </div>
 <script>
     var ctx = document.getElementById("myChart").getContext('2d');
@@ -45,14 +56,14 @@
                            "{{item}}",
                        {% endfor %}],
                datasets: [{
-                  label: 'Opened at',
+                  label: 'Toggle Opened at',
                   data: {{openData}},
                   borderColor: "rgba(75,192,192,0.7)",
                   backgroundColor: "rgba(75,192,192,1)",
                   lineTension: 0,
                   fill: false
                }, {
-                  label: 'Closed at',
+                  label: 'Toggle Closed at',
                   data: {{closeData}},
                   borderColor: "rgba(255,99,132,0.7)",
                   backgroundColor: "rgba(255,99,132,1)",

@@ -4,7 +4,7 @@ import requests
 
 app = Flask(__name__)
 
-@app.route('/index',methods = ['POST', 'GET'])
+@app.route('/',methods = ['POST', 'GET'])
 def index():
     return render_template('index.html')
 
@@ -17,32 +17,42 @@ def check():
         stock = request.args.get('stock')
         return redirect(url_for('daily', symbol = stock))
 
-@app.route('/daily/<symbol>', methods = ['POST', 'GET'])
+@app.route('/stocks', methods = ['POST', 'GET'])
+def stocks():
+    return render_template('stocks.html')
+
+@app.route('/cryptos', methods = ['POST', 'GET'])
+def cryptos():
+    return render_template('cryptos.html')
+
+@app.route('/stocks/daily/<symbol>', methods = ['POST', 'GET'])
 def daily(symbol):
     function = 'TIME_SERIES_DAILY'
     json_dict = getResponse(symbol, function)
-    openData = getOpen(symbol,json_dict)
-    closeData = getClose(symbol, json_dict)
-    date = getOpenDate(symbol, json_dict)
-    maxOpen = getMax(openData)
-    minOpen = getMin(openData)
-    maxClose = getMax(closeData)
-    minClose = getMin(closeData)
-    return render_template('daily.html', openData=openData, closeData=closeData, symbol=symbol, date=date, maxOpen=maxOpen, minOpen=minOpen, maxClose=maxClose, minClose=minClose)
+    openData = getOpen(symbol,json_dict)[::-1]
+    closeData = getClose(symbol, json_dict)[::-1]
+    date = getOpenDate(symbol, json_dict)[::-1]
+    # maxOpen = getMax(openData)
+    # minOpen = getMin(openData)
+    # maxClose = getMax(closeData)
+    # minClose = getMin(closeData)
+    # maxOpen = maxOpen, minOpen = minOpen, maxClose = maxClose, minClose = minClose
+    return render_template('daily.html', openData=openData, closeData=closeData, symbol=symbol, date=date)
 
-@app.route('/intraday/<symbol>', methods = ['POST', 'GET'])
+@app.route('/stocks/intraday/<symbol>', methods = ['POST', 'GET'])
 def intraday(symbol):
     function = 'TIME_SERIES_INTRADAY'
     json_dict = getResponse(symbol, function)
 
-    openData = getOpen(symbol,json_dict)
-    closeData = getClose(symbol, json_dict)
-    date = getOpenDate(symbol, json_dict)
-    maxOpen = getMax(openData)
-    minOpen = getMin(openData)
-    maxClose = getMax(closeData)
-    minClose = getMin(closeData)
-    return render_template('intraday.html', openData=openData, closeData=closeData, symbol=symbol, date=date, maxOpen=maxOpen, minOpen=minOpen, maxClose=maxClose, minClose=minClose)
+    openData = getOpen(symbol,json_dict)[::-1]
+    closeData = getClose(symbol, json_dict)[::-1]
+    date = getOpenDate(symbol, json_dict)[::-1]
+    # maxOpen = getMax(openData)
+    # minOpen = getMin(openData)
+    # maxClose = getMax(closeData)
+    # minClose = getMin(closeData)
+    # maxOpen=maxOpen, minOpen=minOpen, maxClose=maxClose, minClose=minClose
+    return render_template('intraday.html', openData=openData, closeData=closeData, symbol=symbol, date=date)
 
 def getResponse(symbol, function):
     API_KEY = 'O2877FVGMXZ33X94'
