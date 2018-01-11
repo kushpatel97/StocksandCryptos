@@ -3,75 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title>Stocks</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
+    <!-- CSS -->
+    <link href ="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet">
+    <link href = "{{ url_for('static',filename='css/style.css') }}" rel= "stylesheet">
+    <link href = "{{ url_for('static',filename='css/jquery-ui.css') }}" rel= "stylesheet">
+
+    <!-- Libraries -->
+    <script src = "{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script src = "{{ url_for('static',filename='js/jquery-ui.js') }}" rel= "stylesheet"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            var stock = [
+                { value: "AAPL", label: "Apple" },
+                { value: "MSFT", label: "Microsoft" },
+                { value: "AMZN", label: "Amazon" },
+            ];
+            $("#stock").autocomplete({ source: stock });
+        });
+    </script>
+
 </head>
 <body>
 {% extends "navbar.html" %}
 {% block content %}
 
-<h1>Stock test</h1>
+<h1 id="test2">Stock test</h1>
 <!-- Forms -->
 <div class="container">
-    <div class="row">
-        <div class="col-lg-12">
-            <form class="navbar-form navbar-left" action="http://localhost:5000/check" method="post">
-                <div class="form-group">
-                    <input type="text" class="form-control" name="stock" placeholder="Enter Stock Symbol"/>
-                    <!--<input type="submit" value="submit"/>-->
-                </div>
-                <button type="submit" value="submit" class="btn btn-primary btn-md">Submit</button>
-            </form>
+    <form class="form-horizontal" action="{{ url_for('check') }}" method="post">
+        <div id="the-basics" class="col-lg-12 form-group">
+            <input type="text" id="stock" class="form-control" name="stock" autocomplete="off" placeholder="Enter Stock Symbol"/>
         </div>
-    </div>
-</div>
-<br>
-<!-- Links -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-3">
-            <a href="{{ url_for('intraday', symbol=symbol) }}" class="btn btn-default btn-lg center-block">Intraday</a>
-            <br>
-            <a href="{{ url_for('daily', symbol=symbol) }}" class="btn btn-primary btn-lg center-block">Daily</a>
-            <br>
-            <a href="{{ url_for('monthly', symbol=symbol) }}" class="btn btn-default btn-lg center-block">Monthly</a>
-        </div>
-        <div class="col-lg-9">
-            <canvas id="myChart" width="1500" height="750"></canvas>
-        </div>
-    </div>
-
+        <button type="submit" value="submit" class="btn btn-primary btn-md">Submit</button>
+    </form>
 </div>
 
-<script>
-    var ctx = document.getElementById("myChart").getContext('2d');
-       var myChart = new Chart(ctx, {
-           type: 'line',
-           data: {
-               labels:[{% for item in date %}
-                           "{{item}}",
-                       {% endfor %}],
-               datasets: [{
-                  label: 'Toggle Opened at',
-                  data: {{openData}},
-                  borderColor: "rgba(75,192,192,0.7)",
-                  backgroundColor: "rgba(75,192,192,1)",
-                  lineTension: 0,
-                  fill: false
-               }, {
-                  label: 'Toggle Closed at',
-                  data: {{closeData}},
-                  borderColor: "rgba(255,99,132,0.7)",
-                  backgroundColor: "rgba(255,99,132,1)",
-                  lineTension: 0,
-                  fill: false
-               }
-               ]
-           },
-           options: {}
-       });
-</script>
+
+
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins and Typeahead) -->
+<script src = "{{ url_for('static', filename='js/jquery.js') }}"></script>
+<script src = "{{ url_for('static', filename='js/jquery-ui.js') }}"></script>
+<!-- Bootstrap JS -->
+<script src = "{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 {% endblock %}
 </body>
 </html>

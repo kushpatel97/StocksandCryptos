@@ -2,6 +2,7 @@ from flask import Flask, render_template, url_for, redirect, request
 import json
 import requests
 import stock
+import keys
 
 app = Flask(__name__)
 
@@ -20,7 +21,9 @@ def check():
 
 @app.route('/stocks', methods = ['POST', 'GET'])
 def stocks():
-    return render_template('stocks.html')
+    stock_symbols = stock.getStockSymbols()
+    stock_name = stock.getStockName()
+    return render_template('stocks.html', stock_symbols = stock_symbols, stock_name = stock_name)
 
 @app.route('/cryptos', methods = ['POST', 'GET'])
 def cryptos():
@@ -72,18 +75,16 @@ def monthly(symbol):
 
 
 def getResponse(symbol, function):
-    API_KEY = 'O2877FVGMXZ33X94'
-    API_URL = 'https://www.alphavantage.co/query'
     parameters = {
         'function': function,
         'symbol': symbol,
-        'apikey': API_KEY
+        'apikey': keys.API_KEY
     }
     if function == 'TIME_SERIES_INTRADAY':
         parameters.update({'interval': '5min'})
         parameters.update({'outputsize': 'compact'})
 
-    json_data = requests.get(API_URL, params=parameters)
+    json_data = requests.get(keys.API_URL, params=parameters)
     json_dict = json.loads(json_data.content)
     return json_dict
 
