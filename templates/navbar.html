@@ -1,7 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    {% block head %}
+    <!-- CSS -->
+    <link href ="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet">
+    <link href = "{{ url_for('static',filename='css/style.css') }}" rel= "stylesheet">
+    <link href = "{{ url_for('static',filename='css/jquery-ui.css') }}" rel= "stylesheet">
+
+    <!-- Libraries -->
+    <script src = "{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script src = "{{ url_for('static',filename='js/jquery-ui.js') }}" rel= "stylesheet"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var stock = [
+                {% for symbol, name in zipped %}
+                    {value: "{{symbol}}", label: "{{name}}"},
+                {% endfor %}
+            ];
+            $("#stock").autocomplete({ source: stock });
+        });
+    </script>
+    {% endblock %}
 </head>
 <body>
 <nav class="navbar navbar-inverse">
@@ -17,9 +37,40 @@
   </div>
 </nav>
 
-<div class="container">
+<!--<div class="container">-->
     {% block content %}
     {% endblock %}
-</div>
+<!--</div>-->
+
+{% block scripts %}
+<script>
+    var ctx = document.getElementById("myChart").getContext('2d');
+       var myChart = new Chart(ctx, {
+           type: 'line',
+           data: {
+               labels:[{% for item in date %}
+                           "{{item}}",
+                       {% endfor %}],
+               datasets: [{
+                  label: 'Toggle Opened at',
+                  data: {{openData}},
+                  borderColor: "rgba(75,192,192,0.7)",
+                  backgroundColor: "rgba(75,192,192,1)",
+                  lineTension: 0,
+                  fill: false
+               }, {
+                  label: 'Toggle Closed at',
+                  data: {{closeData}},
+                  borderColor: "rgba(255,99,132,0.7)",
+                  backgroundColor: "rgba(255,99,132,1)",
+                  lineTension: 0,
+                  fill: false
+               }
+               ]
+           },
+           options: {}
+       });
+</script>
+{% endblock %}
 </body>
 </html>

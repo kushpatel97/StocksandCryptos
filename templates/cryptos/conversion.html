@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Cryptos</title>
+    <title>Crypto Conversion</title>
 </head>
 <body>
 {% extends "navbar.html" %}
@@ -39,9 +39,11 @@
 </div>
 
 <div class="container">
-    Have: {{ have }}
-    <br>
-    Get: {{ get }}
+    codeFrom: {{ codeFrom }}<br>
+    nameFrom: {{ nameFrom }}<br>
+    codeTo = {{ codeTo }}<br>
+    nameTo = {{ nameTo }}<br>
+    exchangeRates = {{ exchangeRates }}<br>
 </div>
 {% endblock %}
 </body>

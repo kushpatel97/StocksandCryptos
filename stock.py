@@ -1,6 +1,5 @@
 import csv
 
-
 # Gets stock symbols
 def getStockSymbols():
     stksymbol = []
@@ -18,6 +17,11 @@ def getStockName():
             stkName.append(row[1])
     return stkName
 
+def getMax(numlist):
+    return max(numlist)
+
+def getMin(numlist):
+    return min(numlist)
 
 class Stock:
     def __init__(self, symbol, json_dict):

@@ -3,35 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Stocks</title>
-    <!-- CSS -->
-    <link href ="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet">
-    <link href = "{{ url_for('static',filename='css/style.css') }}" rel= "stylesheet">
-    <link href = "{{ url_for('static',filename='css/jquery-ui.css') }}" rel= "stylesheet">
-
-    <!-- Libraries -->
-    <script src = "{{ url_for('static', filename='js/jquery.js') }}"></script>
-    <script src = "{{ url_for('static',filename='js/jquery-ui.js') }}" rel= "stylesheet"></script>
-
-    <script type="text/javascript">
-        $(function () {
-            var stock = [
-                { value: "AAPL", label: "Apple" },
-                { value: "MSFT", label: "Microsoft" },
-                { value: "AMZN", label: "Amazon" },
-            ];
-            $("#stock").autocomplete({ source: stock });
-        });
-    </script>
-
+    <!-- AutoComplete -->
+    <!--<script type="text/javascript">-->
+        <!--$(function () {-->
+            <!--var stock = [-->
+                <!--{% for symbol, name in zipped %}-->
+                    <!--{value: "{{symbol}}", label: "{{name}}"},-->
+                <!--{% endfor %}-->
+            <!--];-->
+            <!--$("#stock").autocomplete({ source: stock });-->
+        <!--});-->
+    <!--</script>-->
 </head>
 <body>
 {% extends "navbar.html" %}
 {% block content %}
-
-<h1 id="test2">Stock test</h1>
 <!-- Forms -->
 <div class="container">
-    <form class="form-horizontal" action="{{ url_for('check') }}" method="post">
+    <h1>Enter a Stock Symbol or search for a company</h1>
+</div>
+
+<div class="container">
+    <form class="form-horizontal" action="{{ url_for('checkstk') }}" method="post">
         <div id="the-basics" class="col-lg-12 form-group">
             <input type="text" id="stock" class="form-control" name="stock" autocomplete="off" placeholder="Enter Stock Symbol"/>
         </div>
@@ -40,14 +33,6 @@
 </div>
 
 
-
-
-
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins and Typeahead) -->
-<script src = "{{ url_for('static', filename='js/jquery.js') }}"></script>
-<script src = "{{ url_for('static', filename='js/jquery-ui.js') }}"></script>
-<!-- Bootstrap JS -->
-<script src = "{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 {% endblock %}
 </body>
 </html>

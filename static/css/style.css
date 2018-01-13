@@ -1,7 +1,5 @@
-#test1 {
-    color: blue;
-}
-
-#test2 {
-    color: red;
+.ui-autocomplete {
+    height: 200px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
