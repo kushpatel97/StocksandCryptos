@@ -1,0 +1,47 @@
+{% extends "navbar.html" %}
+{% block title %}Conversion Rates{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <h1>Convert From: </h1>
+        </div>
+        <div class="col-lg-6">
+            <h1>Convert To: </h1>
+        </div>
+    </div>
+</div>
+<!-- Input Values -->
+<div class="container">
+    <div class="row">
+            <form class="form-horizontal" action="{{ url_for('checkcrypto') }}" method="post">
+                <div class="col-lg-6">
+                    <input type="text" class="form-control" name="have" autocomplete="off" placeholder="Convert From"/>
+                    <br>
+                    <button type="submit" value="submit" class="btn btn-primary btn-md">Find Exchange Rates</button>
+                </div>
+                <div class="col-lg-6">
+                    <input type="text" class="form-control" name="get" autocomplete="off" placeholder="Convert To"/>
+                </div>
+            </form>
+        </div>
+</div>
+<br>
+<!-- Display Values -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3">
+            <input type="text" class="form-control text-right" name="get" autocomplete="off" value="1"/>
+        </div>
+        <div class="col-lg-3">
+            <h4 class="text-left">{{ nameFrom }}</h4>
+        </div>
+        <div class="col-lg-3">
+            <input type="text" class="form-control text-right" name="get" autocomplete="off" value="{{ exchangeRates }}"/>
+        </div>
+        <div class="col-lg-3">
+            <h4 class="text-left">{{ nameTo }}</h4>
+        </div>
+    </div>
+</div>
+{% endblock %}

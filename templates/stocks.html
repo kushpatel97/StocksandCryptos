@@ -1,22 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Stocks</title>
-    <!-- AutoComplete -->
-    <!--<script type="text/javascript">-->
-        <!--$(function () {-->
-            <!--var stock = [-->
-                <!--{% for symbol, name in zipped %}-->
-                    <!--{value: "{{symbol}}", label: "{{name}}"},-->
-                <!--{% endfor %}-->
-            <!--];-->
-            <!--$("#stock").autocomplete({ source: stock });-->
-        <!--});-->
-    <!--</script>-->
-</head>
-<body>
 {% extends "navbar.html" %}
+{% block title %}Stocks{% endblock %}
 {% block content %}
 <!-- Forms -->
 <div class="container">
@@ -34,5 +17,3 @@
 
 
 {% endblock %}
-</body>
-</html>

@@ -1,5 +1,5 @@
 {% extends "navbar.html" %}
-{% block title %}Cryptos{% endblock %}
+{% block title %}Crypto Graphs{% endblock %}
 {% block content %}
 <div class="container">
     <div class="row">
@@ -11,23 +11,7 @@
         </div>
     </div>
 </div>
-<!-- Conversion Rate Form -->
-<div class="container">
-    <div class="row">
-        <form class="form-horizontal" action="{{ url_for('checkcrypto') }}" method="post">
-            <div class="col-lg-6">
-                <input type="text" class="form-control" name="have" autocomplete="off" placeholder="Convert From"/>
-                <br>
-                <button type="submit" value="submit" class="btn btn-primary btn-md">Find Exchange Rates</button>
-            </div>
-            <div class="col-lg-6">
-                <input type="text" class="form-control" name="get" autocomplete="off" placeholder="Convert To"/>
-            </div>
-        </form>
-    </div>
-</div>
-<br>
-<!-- Market Graph Form  -->
+<!-- Input Form -->
 <div class="container">
     <div class="row">
         <form class="form-horizontal" action="{{ url_for('checkmarket') }}" method="post">
@@ -42,5 +26,12 @@
         </form>
     </div>
 </div>
+<div class="container">
+    <p>{{ symbol }}</p>
+    <p>{{ market }}</p>
+</div>
 
+<div class="container">
+    <canvas id="myChart" width="1500" height="750"></canvas>
+</div>
 {% endblock %}

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
     {% block head %}
     <!-- CSS -->
     <link href ="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet">
@@ -27,7 +29,7 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Finance Web App</a>
+      <a class="navbar-brand" href="{{ url_for('index') }}">Finance Web App</a>
     </div>
     <ul class="nav navbar-nav">
       <li><a href="{{ url_for('index') }}">Home</a></li>

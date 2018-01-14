@@ -13,6 +13,7 @@ def getConversionRes(have, get):
     json_dict = json.loads(json_data.content)
     return json_dict
 
+
 def getFromCode(json_dict):
     return json_dict['Realtime Currency Exchange Rate']['1. From_Currency Code']
 

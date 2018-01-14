@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{symbol}} Intradaily</title>
-</head>
-
-<body>
 {% extends "navbar.html" %}
+{% block title %}{{symbol}} Intradaily{% endblock %}
 {% block content %}
 
 <div class="container">
@@ -51,8 +44,5 @@
     <canvas id="myChart" width="1500" height="750"></canvas>
 </div>
 
-<!-- Chartly.js -->
-
 {% endblock %}
-</body>
-</html>
+
