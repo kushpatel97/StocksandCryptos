@@ -1,0 +1,67 @@
+{% extends "navbar.html" %}
+{% block title %}Compare Markets{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>Compare Markets</h1>
+    <div class="row">
+        <form class="form-horizontal" action="{{ url_for('checkcomparisons') }}" method="post">
+            <div class="col-lg-4">
+                <input type="text" class="form-control" name="cryptocurrency" autocomplete="off" placeholder="Cryptocurrency Symbol"/>
+                <br>
+                <button type="submit" value="submit" class="btn btn-primary btn-md">Compare Graphs</button>
+            </div>
+            <div class="col-lg-4">
+                <input type="text" class="form-control" name="market1" autocomplete="off" placeholder="Market 1"/>
+            </div>
+            <div class="col-lg-4">
+                <input type="text" class="form-control" name="market2" autocomplete="off" placeholder="Market 2"/>
+            </div>
+        </form>
+    </div>
+</div>
+<!--<div class="container">-->
+    <!--Exchange Rates: {{exchange_rate}}-->
+    <!--<hr>-->
+    <!--{{ date }}-->
+    <!--<hr>-->
+    <!--{{ market1_sym }}-->
+    <!--<hr>-->
+    <!--{{ mk2exc }}-->
+
+<!--</div>-->
+<!-- Charts -->
+<div class="container">
+    <canvas id="myChart" width="1500" height="750"></canvas>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    var ctx = document.getElementById("myChart").getContext('2d');
+       var myChart = new Chart(ctx, {
+           type: 'line',
+           data: {
+               labels:[{% for item in date %}
+                           "{{item}}",
+                       {% endfor %}],
+               datasets: [{
+                  label: 'Original',
+                  data: {{market1_sym}},
+                  borderColor: "rgba(75,192,192,0.7)",
+                  backgroundColor: "rgba(75,192,192,1)",
+                  lineTension: 0,
+                  fill: false
+               }, {
+                  label: 'Market Converted',
+                  data: {{mk2exc}},
+                  borderColor: "rgba(255,99,132,0.7)",
+                  backgroundColor: "rgba(255,99,132,1)",
+                  lineTension: 0,
+                  fill: false
+               }
+               ]
+           },
+           options: {}
+       });
+</script>
+{% endblock %}

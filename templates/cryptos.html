@@ -1,18 +1,9 @@
 {% extends "navbar.html" %}
 {% block title %}Cryptos{% endblock %}
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-lg-6">
-            <h1>Convert From: </h1>
-        </div>
-        <div class="col-lg-6">
-            <h1>Convert To: </h1>
-        </div>
-    </div>
-</div>
 <!-- Conversion Rate Form -->
 <div class="container">
+    <h1>Exchange Rates</h1>
     <div class="row">
         <form class="form-horizontal" action="{{ url_for('checkcrypto') }}" method="post">
             <div class="col-lg-6">
@@ -27,8 +18,10 @@
     </div>
 </div>
 <br>
+<hr />
 <!-- Market Graph Form  -->
 <div class="container">
+    <h1>Graphs</h1>
     <div class="row">
         <form class="form-horizontal" action="{{ url_for('checkmarket') }}" method="post">
             <div class="col-lg-6">
@@ -42,5 +35,29 @@
         </form>
     </div>
 </div>
+
+<br>
+<hr />
+<!-- Compare Cryptos  -->
+<div class="container">
+    <h1>Compare Markets</h1>
+    <div class="row">
+        <form class="form-horizontal" action="{{ url_for('checkcomparisons') }}" method="post">
+            <div class="col-lg-4">
+                <input type="text" class="form-control" name="cryptocurrency" autocomplete="off" placeholder="Cryptocurrency Symbol"/>
+                <br>
+                <button type="submit" value="submit" class="btn btn-primary btn-md">Compare Graphs</button>
+            </div>
+            <div class="col-lg-4">
+                <input type="text" class="form-control" name="market1" autocomplete="off" placeholder="Market 1"/>
+            </div>
+            <div class="col-lg-4">
+                <input type="text" class="form-control" name="market2" autocomplete="off" placeholder="Market 2"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<br>
 
 {% endblock %}

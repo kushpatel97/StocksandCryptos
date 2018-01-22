@@ -9,7 +9,7 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/checkcrypto', methods = ['POST', 'GET'])
+@app.route('/checkcrypto', methods = ['POST'])
 def checkcrypto():
     if request.method == 'POST':
         have = request.form['have']
@@ -18,7 +18,7 @@ def checkcrypto():
         return redirect(url_for('convert', haveget=haveget))
     return redirect(url_for('convert', haveget = None))
 
-@app.route('/checkmarket', methods = ['POST', 'GET'])
+@app.route('/checkmarket', methods = ['POST'])
 def checkmarket():
     if request.method == 'POST':
         symbol = request.form['symbol']
@@ -26,6 +26,44 @@ def checkmarket():
         symbolmarket = '+'.join([symbol,market])
         return redirect(url_for('market', symbolmarket=symbolmarket))
     return redirect(url_for('market', symbolmarket = None))
+
+@app.route('/checkcomparisons', methods = ['POST','GET'])
+def checkcomparisons():
+    if request.method == 'POST':
+        cryptocurrency = request.form['cryptocurrency']
+        market1 = request.form['market1']
+        market2 = request.form['market2']
+        results = '+'.join([cryptocurrency,market1,market2])
+        return redirect(url_for('comparisons', results = results))
+    return redirect(url_for('comparisons'), results = None)
+
+@app.route('/cryptos/comparisons/<results>', methods = ['POST', 'GET'])
+def comparisons(results):
+    arr = results.split('+')
+    crypto = arr[0]
+    market1 = arr[1]
+    market2 = arr[2]
+    date = []
+    market1_sym = []
+    market2_sym = []
+    exchange_rate = float(exchangeRate(getConversionRes(market1,market2)))
+    response = getMarketResponse(crypto, market2)
+    timeseries = getTimeseries(response)
+    for key, val in response[timeseries].items():
+        date.append(key)
+        market2_sym.append(val['4a. close ('+market2+')'])
+        market1_sym.append(val['4b. close ('+market1+')'])
+
+    market2_sym = list(map(float, market2_sym))
+    market1_sym = list(map(float, market1_sym))
+    mk2exc = [x/exchange_rate for x in market2_sym]
+    date = reversed(date)
+    market1_sym = market1_sym[::-1]
+    mk2exc = mk2exc[::-1]
+
+    exchange_rate = float(exchangeRate(getConversionRes(market1,market2)))
+
+    return render_template('JMZ.html', exchange_rate = exchange_rate, date=date, market1_sym=market1_sym, mk2exc=mk2exc)
 
 @app.route('/cryptos/market/<symbolmarket>', methods = ['POST', 'GET'])
 def market(symbolmarket):
@@ -140,7 +178,7 @@ def getConversionRes(have, get):
 
 def getMarketResponse(symbol, market):
     parameters = {
-        'function': 'DIGITAL_CURRENCY_INTRADAY',
+        'function': 'DIGITAL_CURRENCY_WEEKLY',
         'symbol': symbol,
         'market': market,
         'apikey': API_KEY
@@ -150,8 +188,10 @@ def getMarketResponse(symbol, market):
     return json_dict
 
 #  Crypto Currency Methods
-
-
+def getTimeseries(json_dict):
+    for key in json_dict:
+        timeseries = key
+    return timeseries
 def getFromCode(json_dict):
     return json_dict['Realtime Currency Exchange Rate']['1. From_Currency Code']
 
