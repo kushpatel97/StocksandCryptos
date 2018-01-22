@@ -2,31 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d57716f4-93b9-4bae-a671-1169c1151f14" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/finance.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/finance.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cryptos.py" beforeDir="false" afterPath="$PROJECT_DIR$/cryptos.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/files/NASDAQ.csv" beforeDir="false" afterPath="$PROJECT_DIR$/files/NASDAQ.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/files/NYSE.csv" beforeDir="false" afterPath="$PROJECT_DIR$/files/NYSE.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/files/digital_currency_list.csv" beforeDir="false" afterPath="$PROJECT_DIR$/files/digital_currency_list.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/files/physical_currency_list.csv" beforeDir="false" afterPath="$PROJECT_DIR$/files/physical_currency_list.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/keys.py" beforeDir="false" afterPath="$PROJECT_DIR$/keys.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/daily.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/daily.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock.py" beforeDir="false" afterPath="$PROJECT_DIR$/stock.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/conversion.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/conversion.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/cryptographs.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cryptographs.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/cryptos.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cryptos.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/daily.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/daily.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/intraday.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/intraday.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/monthly.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/monthly.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/stocks.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/stocks.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -40,8 +16,8 @@
       <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="61" column="13" selection-start-line="61" selection-start-column="13" selection-end-line="61" selection-end-column="13" />
+            <state relative-caret-position="119">
+              <caret line="55" lean-forward="true" selection-end-line="210" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -65,8 +41,8 @@
       <file leaf-file-name="JMZ.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/JMZ.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="21" selection-start-line="21" selection-start-column="4" selection-end-line="30" selection-end-column="10" />
+            <state relative-caret-position="154">
+              <caret line="21" selection-end-line="67" />
               <folding>
                 <element signature="n#div#2;n#!!top" />
                 <element signature="n#script#0;n#!!top" />
@@ -458,11 +434,11 @@
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19750196" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.30479452" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.30479452" />
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="Python Console" order="8" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32919955" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32876712" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3989726" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -586,15 +562,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="61" column="13" selection-start-line="61" selection-start-column="13" selection-end-line="61" selection-end-column="13" />
+        <state relative-caret-position="119">
+          <caret line="55" lean-forward="true" selection-end-line="210" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/JMZ.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="21" selection-start-line="21" selection-start-column="4" selection-end-line="30" selection-end-column="10" />
+        <state relative-caret-position="154">
+          <caret line="21" selection-end-line="67" />
           <folding>
             <element signature="n#div#2;n#!!top" />
             <element signature="n#script#0;n#!!top" />
