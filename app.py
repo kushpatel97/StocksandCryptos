@@ -206,6 +206,6 @@ def getToName(json_dict):
 
 def exchangeRate(json_dict):
     return json_dict['Realtime Currency Exchange Rate']['5. Exchange Rate']
-
-if __name__ == '__main__':
-    app.run(debug=True)
+#
+# if __name__ == '__main__':
+#     app.run(debug=True)
